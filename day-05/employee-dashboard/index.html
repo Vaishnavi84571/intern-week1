@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Employee Dashboard</h1>
+
+        <section class="controls">
+            <input id="searchInput" type="text" placeholder="Search by name or department">
+            <select id="departmentFilter">
+                <option value="All">All Departments</option>
+            </select>
+            <select id="sortSelect">
+                <option value="name">Sort by Name</option>
+                <option value="salaryHigh">Salary: High to Low</option>
+                <option value="salaryLow">Salary: Low to High</option>
+            </select>
+            <button id="addEmployeeBtn">Add Employee</button>
+        </section>
+
+        <section id="employeeList" class="employee-grid"></section>
+    </main>
+
+    <div id="employeeModal" class="modal hidden">
+        <div class="modal-content">
+            <button id="closeModal" class="close">×</button>
+            <h2 id="modalTitle">Add Employee</h2>
+            <form id="employeeForm">
+                <input type="hidden" id="employeeId">
+                <label>Name <input id="name" required></label>
+                <label>Department <input id="department" required></label>
+                <label>Role <input id="role" required></label>
+                <label>Salary <input id="salary" type="number" min="0" required></label>
+                <button type="submit">Save Employee</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

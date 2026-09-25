@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+</head>
+<body>
+
+    <h1>Employee Dashboard</h1>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search employee..."
+    >
+
+    <select id="departmentFilter">
+        <option value="all">All Departments</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Finance">Finance</option>
+        <option value="Marketing">Marketing</option>
+    </select>
+
+    <button id="sortButton">Sort by Salary</button>
+
+    <hr>
+
+    <div id="employeeList"></div>
+
+    <div id="employeeDetails"></div>
+
+    <script src="./app.js"></script>
+
+</body>
+</html>

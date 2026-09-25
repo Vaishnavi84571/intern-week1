@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Aarav Sharma",
+        "department": "IT",
+        "role": "Software Developer",
+        "salary": 65000
+    },
+    {
+        "id": 2,
+        "name": "Priya Patil",
+        "department": "HR",
+        "role": "HR Executive",
+        "salary": 48000
+    },
+    {
+        "id": 3,
+        "name": "Rahul Deshmukh",
+        "department": "Finance",
+        "role": "Financial Analyst",
+        "salary": 58000
+    },
+    {
+        "id": 4,
+        "name": "Sneha Joshi",
+        "department": "IT",
+        "role": "Frontend Developer",
+        "salary": 62000
+    },
+    {
+        "id": 5,
+        "name": "Rohan Kulkarni",
+        "department": "Marketing",
+        "role": "Marketing Executive",
+        "salary": 45000
+    },
+    {
+        "id": 6,
+        "name": "Ananya More",
+        "department": "Operations",
+        "role": "Operations Manager",
+        "salary": 70000
+    }
+]
