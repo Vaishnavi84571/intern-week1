@@ -1,0 +1,81 @@
+<section>
+  <a class="btn btn-secondary" routerLink="/facilities">← Back to facilities</a>
+
+  @if (loading) {
+    <div class="loading">Loading facility...</div>
+  }
+
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+
+  @if (facility && !loading) {
+    <div style="margin-top: 18px;">
+      <h1 class="page-title">{{ facility.name }}</h1>
+      <p class="page-subtitle">{{ facility.location }}</p>
+    </div>
+
+    <div class="detail-grid">
+      <div class="card"><strong>Cleanliness</strong><div class="metric-value">{{ facility.cleanliness_score ?? '-' }}</div></div>
+      <div class="card"><strong>Odor score</strong><div class="metric-value">{{ facility.odor_score ?? '-' }}</div></div>
+      <div class="card"><strong>Waste level</strong><div class="metric-value">{{ facility.waste_level ?? '-' }}</div></div>
+      <div class="card"><strong>Footfall</strong><div class="metric-value">{{ facility.footfall }}</div></div>
+    </div>
+
+    <div class="card">
+      <h2>Inspection history</h2>
+      @if (facility.inspections?.length) {
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Inspector</th>
+                <th>Score</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (inspection of facility.inspections; track inspection.id) {
+                <tr>
+                  <td>{{ inspection.inspection_date | date:'yyyy-MM-dd' }}</td>
+                  <td>{{ inspection.inspector_id ?? '-' }}</td>
+                  <td>{{ inspection.score ?? '-' }}</td>
+                  <td>{{ inspection.notes || '-' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p>No inspections recorded.</p>
+      }
+    </div>
+
+    <div class="card" style="margin-top: 16px;">
+      <h2>Complaints</h2>
+      @if (facility.complaints?.length) {
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Complaint</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (complaint of facility.complaints; track complaint.id) {
+                <tr>
+                  <td><span class="status warning">{{ complaint.status }}</span></td>
+                  <td>{{ complaint.complaint_text }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p>No complaints recorded.</p>
+      }
+    </div>
+  }
+</section>

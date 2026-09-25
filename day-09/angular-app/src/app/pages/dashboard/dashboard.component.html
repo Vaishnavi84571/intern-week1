@@ -1,0 +1,51 @@
+<section>
+  <h1 class="page-title">Facility Inspection Dashboard</h1>
+  <p class="page-subtitle">Live metrics from the Day 08 Laravel REST API.</p>
+
+  @if (loading) {
+    <div class="loading">Loading dashboard...</div>
+  }
+
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+
+  @if (!loading && !error) {
+    <div class="card-grid" style="margin-top: 24px;">
+      <div class="card">
+        <div class="metric-label">Facilities</div>
+        <div class="metric-value">{{ facilities.length }}</div>
+      </div>
+      <div class="card">
+        <div class="metric-label">Inspections</div>
+        <div class="metric-value">{{ inspections.length }}</div>
+      </div>
+      <div class="card">
+        <div class="metric-label">Complaints</div>
+        <div class="metric-value">{{ complaints.length }}</div>
+      </div>
+      <div class="card">
+        <div class="metric-label">Resolved complaints</div>
+        <div class="metric-value">{{ resolvedComplaints }}</div>
+      </div>
+      <div class="card">
+        <div class="metric-label">Average cleanliness score</div>
+        <div class="metric-value">{{ averageFacilityScore | number:'1.0-1' }}</div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="card">
+        <h3>Quick actions</h3>
+        <p>Inspect a facility or review the current facility dataset.</p>
+        <a class="btn btn-primary" routerLink="/inspections/new">Create inspection</a>
+      </div>
+
+      <div class="card">
+        <h3>Facilities</h3>
+        <p>Search, filter, sort and open facility details.</p>
+        <a class="btn btn-secondary" routerLink="/facilities">Open facilities</a>
+      </div>
+    </div>
+  }
+</section>

@@ -1,0 +1,83 @@
+<section>
+  <h1 class="page-title">Facilities</h1>
+  <p class="page-subtitle">List, search, filter, sort and inspect facilities.</p>
+
+  <div class="toolbar">
+    <input
+      class="input"
+      type="search"
+      placeholder="Search by name or location"
+      [(ngModel)]="searchTerm"
+    >
+
+    <select class="select" [(ngModel)]="locationFilter">
+      <option value="">All locations</option>
+      @for (location of locations; track location) {
+        <option [value]="location">{{ location }}</option>
+      }
+    </select>
+
+    <select class="select" [(ngModel)]="sortKey">
+      <option value="name">Sort: Name</option>
+      <option value="cleanliness_score">Sort: Cleanliness</option>
+      <option value="waste_level">Sort: Waste level</option>
+      <option value="footfall">Sort: Footfall</option>
+    </select>
+
+    <button class="btn btn-secondary" type="button" (click)="toggleSort()">
+      {{ ascending ? 'Ascending ↑' : 'Descending ↓' }}
+    </button>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Loading facilities...</div>
+  }
+
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+
+  @if (!loading && !error) {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Cleanliness</th>
+            <th>Odor</th>
+            <th>Waste</th>
+            <th>Water</th>
+            <th>Footfall</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (facility of filteredFacilities; track facility.id) {
+            <tr>
+              <td>{{ facility.name }}</td>
+              <td>{{ facility.location }}</td>
+              <td>{{ facility.cleanliness_score ?? '-' }}</td>
+              <td>{{ facility.odor_score ?? '-' }}</td>
+              <td>{{ facility.waste_level ?? '-' }}</td>
+              <td>
+                <span class="status" [class.success]="facility.water_availability">
+                  {{ facility.water_availability ? 'Available' : 'No' }}
+                </span>
+              </td>
+              <td>{{ facility.footfall }}</td>
+              <td>
+                <a class="btn btn-secondary" [routerLink]="['/facilities', facility.id]">Details</a>
+              </td>
+            </tr>
+          }
+          @if (filteredFacilities.length === 0) {
+            <tr>
+              <td colspan="8">No facilities match your filters.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

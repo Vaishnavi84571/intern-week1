@@ -1,0 +1,62 @@
+<section>
+  <a class="btn btn-secondary" routerLink="/inspections/history">← Inspection history</a>
+
+  <div style="margin-top:18px;">
+    <h1 class="page-title">New Inspection</h1>
+    <p class="page-subtitle">Submit a new inspection through the Laravel API.</p>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Loading facilities...</div>
+  }
+
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+
+  @if (success) {
+    <div class="card" style="margin:16px 0; color:#166534;">{{ success }}</div>
+  }
+
+  @if (!loading) {
+    <div class="card" style="margin-top:20px;">
+      <form class="form-grid" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="facility">Facility</label>
+          <select id="facility" class="select" name="facility_id" [(ngModel)]="form.facility_id" required>
+            <option value="">Select facility</option>
+            @for (facility of facilities; track facility.id) {
+              <option [value]="facility.id">{{ facility.name }} — {{ facility.location }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="inspector">Inspector ID</label>
+          <input id="inspector" class="input" type="number" name="inspector_id" min="1" [(ngModel)]="form.inspector_id">
+        </div>
+
+        <div class="form-group">
+          <label for="date">Inspection date</label>
+          <input id="date" class="input" type="date" name="inspection_date" [(ngModel)]="form.inspection_date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="score">Score</label>
+          <input id="score" class="input" type="number" name="score" min="0" max="100" [(ngModel)]="form.score" required>
+        </div>
+
+        <div class="form-group full">
+          <label for="notes">Notes</label>
+          <textarea id="notes" class="textarea" name="notes" rows="5" [(ngModel)]="form.notes" placeholder="Inspection observations"></textarea>
+        </div>
+
+        <div class="form-group full">
+          <button class="btn btn-primary" type="submit" [disabled]="submitting">
+            {{ submitting ? 'Saving...' : 'Save inspection' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+</section>

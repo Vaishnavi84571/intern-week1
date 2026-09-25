@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HygieneAI Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🧼</div>
+
+            <div>
+                <h2>HygieneAI</h2>
+                <span>Risk Intelligence</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <a href="#dashboard"
+               class="nav-link active">
+                ▦ Dashboard
+            </a>
+
+            <a href="#prediction"
+               class="nav-link">
+                ◉ Prediction
+            </a>
+
+            <a href="#analytics"
+               class="nav-link">
+                ◫ Analytics
+            </a>
+
+            <a href="#model-performance"
+               class="nav-link">
+                ◈ Model Performance
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="status-dot"></div>
+
+            <div>
+                <strong>AI Model Online</strong>
+                <small>Random Forest</small>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main" id="dashboard">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    AI / ML FACILITY MONITORING
+                </p>
+
+                <h1>
+                    Smart Hygiene Risk Dashboard
+                </h1>
+
+                <p class="subtitle">
+                    Predict and monitor hygiene risks using machine learning.
+                </p>
+
+            </div>
+
+            <div class="header-badge">
+                <span></span>
+                System Active
+            </div>
+
+        </header>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ▤
+                </div>
+
+                <div>
+                    <span>Total Records</span>
+                    <strong>2,000</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    ◎
+                </div>
+
+                <div>
+                    <span>Model Accuracy</span>
+                    <strong>90.5%</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    △
+                </div>
+
+                <div>
+                    <span>High Risk Records</span>
+                    <strong>246</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+                    <span>Model Status</span>
+                    <strong>Active</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PREDICTION ================= -->
+
+        <section
+            class="content-grid"
+            id="prediction">
+
+            <!-- Prediction Form -->
+
+            <div class="prediction-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            LIVE PREDICTION
+                        </span>
+
+                        <h2>
+                            Assess Facility Hygiene Risk
+                        </h2>
+
+                    </div>
+
+                    <div class="model-pill">
+                        Random Forest
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- Cleanliness -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Cleanliness Score
+                        </label>
+
+                        <input
+                            type="number"
+                            id="cleanliness_score"
+                            min="1"
+                            max="10"
+                            step="0.1"
+                            value="6.5">
+
+                        <small>
+                            Scale: 1 – 10
+                        </small>
+
+                    </div>
+
+
+                    <!-- Odor -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Odor Score
+                        </label>
+
+                        <input
+                            type="number"
+                            id="odor_score"
+                            min="1"
+                            max="10"
+                            step="0.1"
+                            value="4">
+
+                        <small>
+                            Scale: 1 – 10
+                        </small>
+
+                    </div>
+
+
+                    <!-- Waste -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Waste Level
+                        </label>
+
+                        <input
+                            type="number"
+                            id="waste_level"
+                            min="1"
+                            max="10"
+                            step="0.1"
+                            value="5">
+
+                        <small>
+                            Scale: 1 – 10
+                        </small>
+
+                    </div>
+
+
+                    <!-- Water -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Water Availability
+                        </label>
+
+                        <select id="water_availability">
+
+                            <option value="2">
+                                Available
+                            </option>
+
+                            <option value="1">
+                                Limited
+                            </option>
+
+                            <option value="0">
+                                Unavailable
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Footfall -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Daily Footfall
+                        </label>
+
+                        <input
+                            type="number"
+                            id="footfall"
+                            min="0"
+                            value="500">
+
+                    </div>
+
+
+                    <!-- Complaints -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Complaints
+                        </label>
+
+                        <input
+                            type="number"
+                            id="complaints"
+                            min="0"
+                            value="3">
+
+                    </div>
+
+
+                    <!-- Cleaning -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Hours Since Cleaning
+                        </label>
+
+                        <input
+                            type="number"
+                            id="hours_since_cleaning"
+                            min="1"
+                            max="48"
+                            value="12">
+
+                    </div>
+
+
+                    <!-- Location -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <select id="location">
+
+                            <option value="urban">
+                                Urban
+                            </option>
+
+                            <option value="semi-urban">
+                                Semi-Urban
+                            </option>
+
+                            <option value="rural">
+                                Rural
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="predict-button"
+                    onclick="predictRisk()">
+
+                    <span>⚡</span>
+
+                    Predict Hygiene Risk
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= RESULT ================= -->
+
+            <div class="result-card">
+
+                <span class="section-label">
+                    PREDICTION RESULT
+                </span>
+
+
+                <div
+                    id="result-icon"
+                    class="result-icon neutral">
+
+                    ?
+
+                </div>
+
+
+                <h2 id="result-title">
+                    Awaiting Assessment
+                </h2>
+
+
+                <p id="result-text">
+
+                    Enter facility information and run
+                    the AI model.
+
+                </p>
+
+
+                <div class="result-divider"></div>
+
+
+                <div class="result-info">
+
+                    <span>
+                        Model
+                    </span>
+
+                    <strong>
+                        Random Forest
+                    </strong>
+
+                </div>
+
+
+                <div class="result-info">
+
+                    <span>
+                        Accuracy
+                    </span>
+
+                    <strong>
+                        90.5%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ANALYTICS ================= -->
+
+        <section
+            class="analytics-section"
+            id="analytics">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        MODEL ANALYTICS
+                    </span>
+
+                    <h2>
+                        Risk Monitoring
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+
+                <!-- Risk Distribution -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        Risk Distribution
+                    </h3>
+
+
+                    <div class="risk-bars">
+
+
+                        <div class="risk-row">
+
+                            <div>
+
+                                <span>
+                                    Low Risk
+                                </span>
+
+                                <strong>
+                                    333
+                                </strong>
+
+                            </div>
+
+                            <div class="bar">
+
+                                <div class="bar-low"></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="risk-row">
+
+                            <div>
+
+                                <span>
+                                    Medium Risk
+                                </span>
+
+                                <strong>
+                                    1,421
+                                </strong>
+
+                            </div>
+
+                            <div class="bar">
+
+                                <div class="bar-medium"></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="risk-row">
+
+                            <div>
+
+                                <span>
+                                    High Risk
+                                </span>
+
+                                <strong>
+                                    246
+                                </strong>
+
+                            </div>
+
+                            <div class="bar">
+
+                                <div class="bar-high"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Model Performance -->
+
+                <div
+                    class="chart-card"
+                    id="model-performance">
+
+                    <h3>
+                        Model Performance
+                    </h3>
+
+
+                    <div class="model-row">
+
+                        <div>
+
+                            <span>
+                                Random Forest
+                            </span>
+
+                            <small>
+                                Classification accuracy
+                            </small>
+
+                        </div>
+
+                        <strong>
+                            90.5%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div style="width:90.5%"></div>
+
+                    </div>
+
+
+                    <div class="model-row">
+
+                        <div>
+
+                            <span>
+                                Logistic Regression
+                            </span>
+
+                            <small>
+                                Classification accuracy
+                            </small>
+
+                        </div>
+
+                        <strong>
+                            88.25%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div style="width:88.25%"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            Smart Hygiene Risk Prediction System
+
+            <span>•</span>
+
+            AI/ML Powered Facility Monitoring
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

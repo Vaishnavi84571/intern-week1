@@ -1,0 +1,47 @@
+<section>
+  <div style="display:flex; justify-content:space-between; gap:12px; align-items:end; flex-wrap:wrap;">
+    <div>
+      <h1 class="page-title">Inspection History</h1>
+      <p class="page-subtitle">Inspections loaded from the Laravel API.</p>
+    </div>
+    <a class="btn btn-primary" routerLink="/inspections/new">New inspection</a>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Loading inspections...</div>
+  }
+
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+
+  @if (!loading && !error) {
+    <div class="table-wrap" style="margin-top:20px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Facility</th>
+            <th>Inspector</th>
+            <th>Score</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (inspection of inspections; track inspection.id) {
+            <tr>
+              <td>{{ inspection.inspection_date | date:'yyyy-MM-dd' }}</td>
+              <td>{{ inspection.facility?.name || ('Facility #' + inspection.facility_id) }}</td>
+              <td>{{ inspection.inspector_id ?? '-' }}</td>
+              <td>{{ inspection.score ?? '-' }}</td>
+              <td>{{ inspection.notes || '-' }}</td>
+            </tr>
+          }
+          @if (inspections.length === 0) {
+            <tr><td colspan="5">No inspections found.</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>
